@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import './App.css';
-import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
-
+import { useState } from "react";
+import "./App.css";
+import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from "./consts.js";
+import React from "react";
+import CharacterSheet from "./components/CharacterSheet.js";
 
 function App() {
   const [num, setNum] = useState(0);
@@ -11,12 +12,7 @@ function App() {
         <h1>React Coding Exercise</h1>
       </header>
       <section className="App-section">
-        <div>
-          Value:
-          {num}
-          <button>+</button>
-          <button>-</button>
-        </div>
+        <CharacterSheet characterName="Character: 1" />
       </section>
     </div>
   );

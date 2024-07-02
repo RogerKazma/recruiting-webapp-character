@@ -1,3 +1,5 @@
+export const DEFAULT_ATTRIBUTE_VALUE = 10;
+
 export const ATTRIBUTE_LIST = [
     'Strength',
     'Dexterity',
