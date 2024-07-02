@@ -31,7 +31,7 @@ export default function CharacterSheet({ characterName }) {
   return (
     <Card>
       <Col>
-        {characterName}
+        <h1>{characterName}</h1>
         <Row>
           <AttributeList
             attributes={attributes}

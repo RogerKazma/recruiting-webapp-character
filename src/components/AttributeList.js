@@ -11,6 +11,7 @@ export default function AttributeList({
   return (
     <Card>
       <Col>
+        <h2>Attributes</h2>
         {Object.entries(attributes).map(([name, value]) => (
           <Attribute
             name={name}
