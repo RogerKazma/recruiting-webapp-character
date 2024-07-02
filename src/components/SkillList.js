@@ -14,12 +14,12 @@ export default function SkillList({
     <Card>
       <Col>
         <h2>Skills</h2>
-        {Object.entries(skills).map(([name, modifierName]) => (
+        {skills.map(({ name, attributeModifier }) => (
           <Skill
             name={name}
             value={skillValues[name]}
-            modifierName={modifierName}
-            modifierValue={modifiers[modifierName]}
+            modifierName={attributeModifier}
+            modifierValue={modifiers[attributeModifier]}
             onIncrement={onIncrement}
             onDecrement={onDecrement}
           />

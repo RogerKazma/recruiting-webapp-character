@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { ATTRIBUTE_LIST, CLASS_LIST, DEFAULT_ATTRIBUTE_VALUE } from "../consts";
+import {
+  ATTRIBUTE_LIST,
+  CLASS_LIST,
+  DEFAULT_ATTRIBUTE_VALUE,
+  DEFAULT_SKILL_VALUE,
+  SKILL_LIST,
+} from "../consts";
 import AttributeList from "./AttributeList";
 import React from "react";
 import Card from "../common_components/Card";
@@ -7,9 +13,15 @@ import Col from "../common_components/Col";
 import Row from "../common_components/Row";
 import ClassList from "./ClassList";
 import ClassRequirements from "./ClassRequirements";
+import SkillList from "./SkillList";
 
 const initialAttributes = ATTRIBUTE_LIST.reduce((obj, attribute) => {
   obj[attribute] = DEFAULT_ATTRIBUTE_VALUE;
+  return obj;
+}, {});
+
+const initialSkills = SKILL_LIST.reduce((obj, skill) => {
+  obj[skill.name] = DEFAULT_SKILL_VALUE;
   return obj;
 }, {});
 
@@ -29,7 +41,7 @@ function computeModifiers(attributes) {
 export default function CharacterSheet({ characterName }) {
   const [attributes, setAttributes] = useState(initialAttributes);
   const [selectedClass, setSelectedClass] = useState(null);
-  const [skills, setSkills] = useState(null);
+  const [skills, setSkills] = useState(initialSkills);
 
   const modifiers = computeModifiers(attributes);
 
@@ -97,7 +109,10 @@ export default function CharacterSheet({ characterName }) {
           )}
           <SkillList
             skills={SKILL_LIST}
-
+            skillValues={skills}
+            modifiers={modifiers}
+            onIncrement={handleSkillIncrement}
+            onDecrement={handleSkillDecrement}
           />
         </Row>
       </Col>
