@@ -21,7 +21,7 @@ export default function Class({
   const usableClass = classIsUsable(classAttributes, characterAttributes);
 
   return (
-    <div onClick={onSelect} style={usableClass ? { color: "green" } : {}}>
+    <div onClick={() => onSelect(className, classAttributes)} style={usableClass ? { color: "green" } : {}}>
       {className}
     </div>
   );

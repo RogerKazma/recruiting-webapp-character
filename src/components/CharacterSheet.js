@@ -6,6 +6,7 @@ import Card from "../common_components/Card";
 import Col from "../common_components/Col";
 import Row from "../common_components/Row";
 import ClassList from "./ClassList";
+import ClassRequirements from "./ClassRequirements";
 
 const initialAttributes = ATTRIBUTE_LIST.reduce((obj, attribute) => {
   obj[attribute] = DEFAULT_ATTRIBUTE_VALUE;
@@ -14,6 +15,7 @@ const initialAttributes = ATTRIBUTE_LIST.reduce((obj, attribute) => {
 
 export default function CharacterSheet({ characterName }) {
   const [attributes, setAttributes] = useState(initialAttributes);
+  const [selectedClass, setSelectedClass] = useState(null);
 
   function handleIncrement(e) {
     setAttributes({
@@ -29,7 +31,16 @@ export default function CharacterSheet({ characterName }) {
     });
   }
 
-  function handleSelectClass() {}
+  function handleSelectClass(className, classAttributes) {
+    setSelectedClass({
+      className,
+      classAttributes,
+    });
+  }
+
+  function handleCloseClassRequirements() {
+    setSelectedClass(null);
+  }
 
   return (
     <Card>
@@ -46,6 +57,13 @@ export default function CharacterSheet({ characterName }) {
             attributes={attributes}
             onSelectClass={handleSelectClass}
           />
+          {selectedClass !== null && (
+            <ClassRequirements
+              className={selectedClass.className}
+              classAttributes={selectedClass.classAttributes}
+              onClose={handleCloseClassRequirements}
+            />
+          )}
         </Row>
       </Col>
     </Card>
