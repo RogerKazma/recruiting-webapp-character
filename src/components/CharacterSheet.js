@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { ATTRIBUTE_LIST, DEFAULT_ATTRIBUTE_VALUE } from "../consts";
+import { ATTRIBUTE_LIST, CLASS_LIST, DEFAULT_ATTRIBUTE_VALUE } from "../consts";
 import AttributeList from "./AttributeList";
 import React from "react";
 import Card from "../common_components/Card";
 import Col from "../common_components/Col";
 import Row from "../common_components/Row";
+import ClassList from "./ClassList";
 
 const initialAttributes = ATTRIBUTE_LIST.reduce((obj, attribute) => {
   obj[attribute] = DEFAULT_ATTRIBUTE_VALUE;
@@ -28,6 +29,8 @@ export default function CharacterSheet({ characterName }) {
     });
   }
 
+  function handleSelectClass() {}
+
   return (
     <Card>
       <Col>
@@ -37,6 +40,11 @@ export default function CharacterSheet({ characterName }) {
             attributes={attributes}
             onIncrement={handleIncrement}
             onDecrement={handleDecrement}
+          />
+          <ClassList
+            classes={CLASS_LIST}
+            attributes={attributes}
+            onSelectClass={handleSelectClass}
           />
         </Row>
       </Col>

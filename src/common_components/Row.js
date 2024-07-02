@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Row({
   gap = "8px",
-  alignItems = "center",
+  alignItems = "stretch",
   justifyContent = "center",
   children,
 }) {
