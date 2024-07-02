@@ -1,10 +1,11 @@
 import React from "react";
 import Col from "../common_components/Col";
-import Attribute from "./Attribute";
 import Card from "../common_components/Card";
+import Skill from "./Skill";
 
-export default function AttributeList({
-  attributes,
+export default function SkillList({
+  skills,
+  skillValues,
   modifiers,
   onIncrement,
   onDecrement,
@@ -12,12 +13,13 @@ export default function AttributeList({
   return (
     <Card>
       <Col>
-        <h2>Attributes</h2>
-        {Object.entries(attributes).map(([name, value]) => (
-          <Attribute
+        <h2>Skills</h2>
+        {Object.entries(skills).map(([name, modifierName]) => (
+          <Skill
             name={name}
-            value={value}
-            modifier={modifiers[name]}
+            value={skillValues[name]}
+            modifierName={modifierName}
+            modifierValue={modifiers[modifierName]}
             onIncrement={onIncrement}
             onDecrement={onDecrement}
           />

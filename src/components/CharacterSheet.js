@@ -13,9 +13,25 @@ const initialAttributes = ATTRIBUTE_LIST.reduce((obj, attribute) => {
   return obj;
 }, {});
 
+function computeModifier(value) {
+  return Math.floor((value - 10) / 2);
+}
+
+function computeModifiers(attributes) {
+  const modifiers = {};
+  Object.entries(attributes).forEach(([name, value]) => {
+    modifiers[name] = computeModifier(value);
+  });
+
+  return modifiers;
+}
+
 export default function CharacterSheet({ characterName }) {
   const [attributes, setAttributes] = useState(initialAttributes);
   const [selectedClass, setSelectedClass] = useState(null);
+  const [skills, setSkills] = useState(null);
+
+  const modifiers = computeModifiers(attributes);
 
   function handleIncrement(e) {
     setAttributes({
@@ -28,6 +44,20 @@ export default function CharacterSheet({ characterName }) {
     setAttributes({
       ...attributes,
       [e.target.name]: attributes[e.target.name] - 1,
+    });
+  }
+
+  function handleSkillIncrement(e) {
+    setSkills({
+      ...skills,
+      [e.target.name]: skills[e.target.name] + 1,
+    });
+  }
+
+  function handleSkillDecrement(e) {
+    setSkills({
+      ...skills,
+      [e.target.name]: skills[e.target.name] - 1,
     });
   }
 
@@ -49,6 +79,7 @@ export default function CharacterSheet({ characterName }) {
         <Row>
           <AttributeList
             attributes={attributes}
+            modifiers={modifiers}
             onIncrement={handleIncrement}
             onDecrement={handleDecrement}
           />
@@ -64,6 +95,10 @@ export default function CharacterSheet({ characterName }) {
               onClose={handleCloseClassRequirements}
             />
           )}
+          <SkillList
+            skills={SKILL_LIST}
+
+          />
         </Row>
       </Col>
     </Card>
